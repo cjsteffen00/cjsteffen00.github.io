@@ -301,18 +301,34 @@ html {
     color: #ffffff;
 }
 
+/* --- HERO SECTION --- */
 .hero {
     width: 100%;
-    padding: 0;
+    /* 100vh means 100% of the viewport height. 
+       We subtract 80px to account for the approximate height of your sticky navbar 
+       so it fits perfectly on screen without scrolling. */
+    height: calc(100vh - 80px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+    padding: 0;
+    background-color: #fafafa; /* Matches the slight off-white of the demo */
+    overflow: hidden; /* Prevents horizontal scrolling if text gets too wide */
 }
 
 .hero-title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    font-size: 18vw;   /* makes it scale with screen width */
-    line-height: 0.85;
-    letter-spacing: -0.02em;
-    text-align: center;
+    font-family: 'Inter', Arial, sans-serif; /* Fallback to Arial for that rigid look */
+    font-weight: 900; /* Maximum thickness */
+    /* 14vw is usually the sweet spot for a 9-letter word to stretch edge-to-edge. 
+       Adjust this number up or down if "AGRISENSE" wraps to two lines or looks too small. */
+    font-size: 14vw; 
+    line-height: 0.8;
+    letter-spacing: -0.05em; /* Pulls the letters tightly together like the demo */
+    text-transform: uppercase;
+    color: #241F20; 
     margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 }
