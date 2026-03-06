@@ -300,3 +300,19 @@ html {
     border-color: #C00031;
     color: #ffffff;
 }
+
+.hero {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 18vw;   /* makes it scale with screen width */
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin: 0;
+}
