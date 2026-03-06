@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="script.js" defer></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,24 +64,28 @@
         </section>
 
         <section id="deliverables" class="section bg-alt">
-            <h2 class="section-title">Deliverables</h2>
-            <p class="section-subtitle">The final handover will include the following core assets.</p>
-            <div class="grid-container-3">
-                <div class="deliverable-card">
+            <h2 class="section-title slide-in">Deliverables</h2>
+            <p class="section-subtitle slide-in">The final handover will include the following core assets. Click to explore.</p>
+            
+            <div class="grid-container-3 slide-in">
+                <div class="deliverable-card active" data-image="dataset">
                     <h3>Cleaned Datasets</h3>
                     <p>Fully transformed and curated data ready for analysis.</p>
                 </div>
-                <div class="deliverable-card">
+                <div class="deliverable-card" data-image="scripts">
                     <h3>Forecasting Scripts</h3>
                     <p>Documented R/Python notebooks containing the modeling logic.</p>
                 </div>
-                <div class="deliverable-card">
+                <div class="deliverable-card" data-image="dashboard">
                     <h3>Tableau Dashboards</h3>
                     <p>Interactive visualizations for stakeholder reporting.</p>
                 </div>
             </div>
-            <div class="placeholder graph-placeholder mt-large">
-               
+            
+            <div class="deliverable-display mt-large slide-in" id="display-area">
+                <div class="placeholder graph-placeholder" id="dynamic-image">
+                    
+                </div>
             </div>
         </section>
 
