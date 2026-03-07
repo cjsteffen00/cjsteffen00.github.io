@@ -28,34 +28,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- FEATURE 2: CLICKABLE DELIVERABLES GALLERY ---
     
+    // --- FEATURE 2: CLICKABLE DELIVERABLES GALLERY ---
+    
     const cards = document.querySelectorAll('.deliverable-card');
     const dynamicImage = document.getElementById('dynamic-image');
     const displayArea = document.getElementById('display-area');
 
-    // This object holds the text/images that will swap in when a card is clicked
+    // Swap empty strings with Tableau iframe embed codes
+    // Swap empty strings with temporary placeholder images
     const contentMap = {
-        'dataset': '',
-        'scripts': '',
-        'dashboard': ''
+        'dataset': '<img src="https://placehold.co/1000x450/241F20/C00031?text=Cleaned+Dataset+Preview" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">',
+        
+        'scripts': '<img src="https://placehold.co/1000x450/241F20/C00031?text=Forecasting+Model+Output" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">',
+        
+        'dashboard': '<img src="https://placehold.co/1000x450/241F20/C00031?text=Interactive+Tableau+Dashboard" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">'
     };
+
+    // Load the default image on page load
+    dynamicImage.innerHTML = contentMap['dataset'];
+    dynamicImage.style.border = "none"; // Removes the dashed border
+    dynamicImage.style.backgroundColor = "transparent"; // Clears the grey background
 
     cards.forEach(card => {
         card.addEventListener('click', () => {
-            // Ignore click if the card is already active
             if (card.classList.contains('active')) return;
 
-            // Remove 'active' class from all cards
             cards.forEach(c => c.classList.remove('active'));
-            // Add 'active' class to the clicked card
             card.classList.add('active');
 
-            // Fade out the current image
             displayArea.classList.add('fade-out');
             
-            // Wait for the fade out to finish (400ms to match CSS), then swap content and fade back in
             setTimeout(() => {
                 const imageKey = card.getAttribute('data-image');
-                dynamicImage.innerText = contentMap[imageKey];
+                // CRITICAL FIX: Changed innerText to innerHTML to render the iframe
+                dynamicImage.innerHTML = contentMap[imageKey];
+                
+                // Remove the dashed placeholder border if an iframe is present
+                dynamicImage.style.border = "none"; 
+                
                 displayArea.classList.remove('fade-out');
             }, 400); 
         });
