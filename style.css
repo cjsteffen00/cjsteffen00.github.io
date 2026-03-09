@@ -409,3 +409,53 @@ transform: scaleY(2.2);
     max-width: 100%;
     height: auto;
 }
+
+.section-exploratory .exploratory-display {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Sets the February / May text on opposite ends */
+.timeline-bounds {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+}
+
+/* Ensure timeline steps have enough space at the top for the centered badge */
+.timeline-step {
+    position: relative; 
+    margin-top: 25px; /* Adds space so the badge doesn't hit the element above it */
+    /* Your existing .timeline-step styles go here */
+}
+
+/* Optional: Gives the active step a subtle highlight */
+.timeline-step.active {
+    border-left: 4px solid #2e7d32; /* Example dark green */
+    background-color: #f9fdf9; /* Very light green background */
+}
+
+/* The visual styling for the 'Currently Here' badge, now perfectly centered */
+.current-tab {
+    position: absolute;
+    top: -15px; /* Hovers just above the top edge of the step */
+    left: 50%; /* Moves the start of the badge to the exact middle */
+    transform: translateX(-50%); /* Shifts the badge back by half its own width to center it */
+    background-color: #2e7d32; /* Example dark green */
+    color: #ffffff;
+    padding: 4px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    white-space: nowrap; /* Ensures the words "Currently Here" stay on one line */
+}

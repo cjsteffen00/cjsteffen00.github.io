@@ -15,7 +15,7 @@
             <h1 class="logo">AGRISENSE ANALYTICS</h1>
             <ul class="nav-links">
                 <li><a href="#overview">Overview</a></li>
-                <li><a href="#factors">Factors</a></li>
+                <li><a href="#exploratory">Exploratory</a></li>
                 <li><a href="#the-bq">BQ</a></li>
                 <li><a href="#proposal">Proposal</a></li>
                 <li><a href="#deliverables">Deliverables</a></li>
@@ -37,17 +37,16 @@
             </div>
         </section>
 
-        <section id="factors" class="section">
-            <h2 class="section-title">Key Factors</h2>
-            <p class="section-subtitle">Exploring the underlying variables that impact crop yield, supply chain logistics, and environmental constraints.</p>
-            
-            <div class="grid-container-2"> 
-                <div class="placeholder graph-placeholder">
-                   <img src="https://placehold.co/500x400/f5f5f5/241F20?text=Analysis+Chart" alt="Graph 1" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="placeholder graph-placeholder">
-                   <img src="https://placehold.co/500x400/f5f5f5/241F20?text=Logistics+Chart" alt="Graph 2" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+        <section id="exploratory" class="section-exploratory">
+            <h2 class="section-title">EXPLORATORY</h2>            
+            <div class="streamlit-container" style="display: flex; justify-content: center; align-items: center;">
+                <iframe 
+                    src="http://localhost:8501/?embed=true" 
+                    width="85%" 
+                    height="700px" 
+                    frameborder="0"
+                    style="border: none; max-width: 100%;">
+                </iframe>
             </div>
         </section>
 
@@ -72,35 +71,44 @@
 
         <section id="deliverables" class="section-deliverable">
             <h2 class="section-title slide-in">DELIVERABLES</h2>            
-            <div class="streamlit-container" style="display: flex; justify-content: center; align-items: center;">
-                <iframe 
-                    src="http://localhost:8501/?embed=true" 
-                    width="85%" 
-                    height="700px" 
-                    frameborder="0"
-                    style="border: none; max-width: 100%;">
-                </iframe>
+            <div class="grid-container-2"> 
+                <div class="placeholder graph-placeholder">
+                   <img src="https://placehold.co/500x400/f5f5f5/241F20?text=Analysis+Chart" alt="Graph 1" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="placeholder graph-placeholder">
+                   <img src="https://placehold.co/500x400/f5f5f5/241F20?text=Logistics+Chart" alt="Graph 2" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
         </section>
 
         <section id="roadmap" class="section">
             <h2 class="section-title">Project Roadmap</h2>
+            
+            <div class="timeline-bounds">
+                <span class="month">February</span>
+                <span class="month">May</span>
+            </div>
+
             <div class="timeline">
                 <div class="timeline-step">
                     <span class="step-number">01</span>
                     <h4>Data Discovery</h4>
                     <p>Setting up project directories and examining raw data.</p>
                 </div>
-                <div class="timeline-step">
+
+                <div class="timeline-step active">
+                    <div class="current-tab">Currently Here</div>
                     <span class="step-number">02</span>
                     <h4>Transformation</h4>
                     <p>Cleaning, staging, and preparing the curated dataset.</p>
                 </div>
+
                 <div class="timeline-step">
                     <span class="step-number">03</span>
                     <h4>Modeling</h4>
                     <p>Building and tuning the forecasting algorithms.</p>
                 </div>
+
                 <div class="timeline-step">
                     <span class="step-number">04</span>
                     <h4>Final Deliverable</h4>
