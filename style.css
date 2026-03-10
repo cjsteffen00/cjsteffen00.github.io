@@ -240,7 +240,8 @@ h1, h2, h3, h4, blockquote {
     align-items: flex-start;
     padding: 40px;
     background-color: #241F20;
-    color: #ffffff;
+    color: #cccccc;
+    font-family: 'Inter', sans-serif;
     flex-wrap: wrap;
     gap: 40px; 
 }
