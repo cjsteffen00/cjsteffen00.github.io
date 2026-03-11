@@ -88,7 +88,7 @@ h1, h2, h3, h4, blockquote {
 
 /* --- SECTIONS & LAYOUT --- */
 .section {
-    padding: 120px 40px;
+    padding: 140px 40px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
@@ -172,7 +172,7 @@ h1, h2, h3, h4, blockquote {
 }
 
 .highlight-section {
-    padding: 160px 40px;
+    padding: 200px;
 }
 
 .feature-list {
