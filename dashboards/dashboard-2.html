@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AgriSense Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        .dashboard-wrapper {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        .tableau-container {
+            width: 100%;
+            height: 800px; /* Adjust based on your dashboard size */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .tableau-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">AGRISENSE ANALYTICS</h1>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <a href="../index.html#deliverables" class="back-btn">&larr; Back to Main Site</a>
+        <h2 class="section-title" style="font-size: 3rem; text-align: left; padding: 0 0 20px 0;">2 Analysis</h2>
+        
+        <div class="tableau-container">
+            <iframe src="YOUR_TABLEAU_PUBLIC_URL_HERE&:showVizHome=no&:embed=true" allowfullscreen></iframe>
+        </div>
+    </main>
+</body>
+</html>

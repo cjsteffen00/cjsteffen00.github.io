@@ -1,3 +1,15 @@
+/* --- CSS VARIABLES --- */
+:root {
+    --primary-color: #241F20;
+    --accent-color: #C00031;
+    --bg-light: #ffffff;
+    --bg-alt: #fafafa;
+    --text-muted: #666;
+    --border-color: #eaeaea;
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+}
+
 /* --- GLOBAL RESETS & TYPOGRAPHY --- */
 * {
     margin: 0;
@@ -5,16 +17,21 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0px; /* Accounts for the sticky navbar height */
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    color: #241F20; /* Updated global text color */
-    background-color: #ffffff;
+    font-family: var(--font-sans);
+    color: var(--primary-color);
+    background-color: var(--bg-light);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, blockquote {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-weight: 400;
 }
 
@@ -23,7 +40,7 @@ h1, h2, h3, h4, blockquote {
     position: sticky;
     top: 0;
     background-color: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     padding: 20px 0;
 }
@@ -42,7 +59,7 @@ h1, h2, h3, h4, blockquote {
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 700;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
 }
 
 .nav-links {
@@ -53,37 +70,15 @@ h1, h2, h3, h4, blockquote {
 
 .nav-links a {
     text-decoration: none;
-    color: #666;
+    color: var(--text-muted);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s ease;
 }
 
-/* Navigation link hover */
 .nav-links a:hover {
-    color: #C00031; /* Deep red accent */
-}
-
-/* Timeline borders to match the new dark text */
-.timeline-step {
-    border-top: 2px solid #241F20;
-    padding-top: 20px;
-}
-
-/* Deliverable Cards Hover */
-.deliverable-card:hover {
-    transform: translateY(-5px);
-    border-color: #C00031; /* Red border on hover */
-}
-
-/* Deliverable Cards Active State */
-.deliverable-card.active {
-    border-color: #C00031; /* Red border when clicked */
-    background-color: #fcfcfc;
-    transform: translateY(-8px);
-    /* Adding a very subtle red tint to the shadow for cohesion */
-    box-shadow: 0 12px 24px rgba(192, 0, 49, 0.08); 
+    color: var(--accent-color);
 }
 
 /* --- SECTIONS & LAYOUT --- */
@@ -92,17 +87,6 @@ h1, h2, h3, h4, blockquote {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-}
-
-.bg-alt {
-    background-color: #fafafa;
-    max-width: 100%;
-}
-
-.bg-alt > * {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .section-title {
@@ -122,46 +106,83 @@ h1, h2, h3, h4, blockquote {
     margin: 0 auto 60px auto;
 }
 
-/* --- GRIDS & PLACEHOLDERS --- */
-.grid-container-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
+/* Embed Containers (Streamlit & Canva) */
+.canva-container {
+    position: relative; 
+    width: 100%; 
+    height: 0; 
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); 
+    margin-top: 1.6em; 
+    border-radius: 8px; 
+    overflow: hidden;
 }
 
-.grid-container-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 40px;
+.canva-iframe {
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0; 
+    left: 0; 
+    border: none; 
 }
 
-.placeholder {
-    background-color: #f0f0f0;
+/* Overrides the default 1200px section limit */
+.section-exploratory {
+    max-width: 90%; 
+    margin: 0 auto;
+}
+
+.streamlit-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #888;
-    font-style: italic;
-    border: 1px dashed #ccc;
-}
-
-.image-placeholder {
-    height: 500px;
+    align-items: center;
     width: 100%;
+    margin: 0 auto;
 }
 
-.graph-placeholder {
-    height: 400px;
+.streamlit-iframe {
+    width: 90%; /* Increased from 85% */
+    height: 640px; /* Bumped up slightly so the wider iframe doesn't feel squished */
+    border: none;
+    border-radius: 8px; /* Adds a nice subtle curve to the dashboard edges */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Soft shadow to lift it off the page */
+}
+
+/* --- HERO SECTION --- */
+.hero {
     width: 100%;
+    height: calc(100vh - 80px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-alt);
+    overflow: hidden; 
+    background: radial-gradient(circle at center, #ffffff 0%, #f5f5f5 50%, #ececec 100%);
 }
 
-.mt-large {
-    margin-top: 60px;
+.hero-title {
+    font-family: 'Rajdhani', var(--font-sans);
+    font-weight: 900;
+    font-size: 18vw;
+    line-height: 0.8;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    text-align: center;
+    transform: scaleY(2);
+    background: linear-gradient(180deg, #ffffff 0%, #f2f2f2 40%, #e6e6e6 75%, #dcdcdc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 2px 0px #d5c8cc, 0px 4px 0px #c5b9bd, 0px 6px 12px rgba(0,0,0,0.15);
+    opacity: 0.9;
 }
 
-/* --- SPECIFIC ELEMENTS --- */
+/* --- BLOCKQUOTE & FEATURES --- */
+.highlight-section {
+    padding: 200px 40px;
+}
+
 .bq-statement {
     font-size: 2.5rem;
     line-height: 1.4;
@@ -169,10 +190,6 @@ h1, h2, h3, h4, blockquote {
     color: #000;
     max-width: 800px;
     margin: 0 auto;
-}
-
-.highlight-section {
-    padding: 200px;
 }
 
 .feature-list {
@@ -184,7 +201,7 @@ h1, h2, h3, h4, blockquote {
 
 .feature-list li {
     padding: 15px 0;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--border-color);
     font-size: 1.1rem;
     color: #444;
 }
@@ -193,21 +210,92 @@ h1, h2, h3, h4, blockquote {
     border-bottom: none;
 }
 
-/* --- CARDS & TIMELINE --- */
+/* --- GRIDS & CARDS --- */
+.grid-container-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.placeholder {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Overrides the default 1200px section limit */
+.section-deliverable {
+    max-width: 90%; 
+    margin: 0 auto;
+}
+
+.graph-placeholder {
+    width: 100%;
+    height: 425px; /* Removes the fixed 400px height */
+    aspect-ratio: 16 / 9; /* Automatically scales the height based on the width */
+}
+
+.deliverable-img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: fill; /* Prevents graphs from stretching/distorting */
+    border-radius: 8px;
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.placeholder:hover .deliverable-img {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(192, 0, 49, 0.4), 0 0 50px rgba(192, 0, 49, 0.15);
+}
+
 .deliverable-card {
     background: #fff;
     padding: 40px 30px;
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--border-color);
     text-align: center;
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .deliverable-card h3 {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.deliverable-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(192, 0, 49, 0.3), 0 0 30px rgba(192, 0, 49, 0.1); 
+    z-index: 10;
+    position: relative;
+}
+
+.deliverable-card.active {
+    border-color: var(--accent-color);
+    background-color: #fcfcfc;
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(192, 0, 49, 0.5), 0 0 40px rgba(192, 0, 49, 0.2);
+}
+
+/* --- ROADMAP TIMELINE --- */
+.timeline-bounds {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
 }
 
 .timeline {
@@ -218,6 +306,18 @@ h1, h2, h3, h4, blockquote {
     margin-top: 60px;
 }
 
+.timeline-step {
+    position: relative; 
+    margin-top: 25px;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 20px;
+}
+
+.timeline-step.active {
+    border-top: 4px solid #2e7d32;
+    background-color: #f9fdf9;
+    padding-bottom: 15px;
+}
 
 .step-number {
     display: block;
@@ -227,10 +327,27 @@ h1, h2, h3, h4, blockquote {
 }
 
 .timeline-step h4 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     text-transform: uppercase;
     font-size: 1rem;
     margin-bottom: 10px;
+}
+
+.current-tab {
+    position: absolute;
+    top: -15px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: #2e7d32; 
+    color: #ffffff;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    white-space: nowrap; 
 }
 
 /* --- FOOTER --- */
@@ -239,29 +356,33 @@ h1, h2, h3, h4, blockquote {
     justify-content: space-between;
     align-items: flex-start;
     padding: 40px;
-    background-color: #241F20;
+    background-color: var(--primary-color);
     color: #cccccc;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     flex-wrap: wrap;
     gap: 40px; 
 }
 
-/* Changed to CSS Grid for the 3-and-2 layout */
 .footer-left {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 equal columns */
-    gap: 10px 15px; /* 25px gap between rows, 30px gap between columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
     flex: 1; 
-    max-width: 800px; /* Keeps the grid from stretching too wide on massive screens */
+    max-width: 800px; 
+}
+
+.footer-brand {
+    font-size: 25px; 
+    font-weight: 600;
+    font-family: var(--font-serif);
 }
 
 .footer-person p {
     margin: 0 0 6px 0;
     font-weight: 600;
-    font-size: 13px; /* Reduced font size for names/positions */
+    font-size: 13px; 
 }
 
-/* Scaled-down button styles */
 .linkedin-btn {
     display: inline-flex;
     align-items: center;
@@ -269,9 +390,9 @@ h1, h2, h3, h4, blockquote {
     background-color: #0077b5;
     color: #ffffff;
     text-decoration: none;
-    font-size: 8px; /* Reduced font size for the button */
+    font-size: 10px; 
     font-weight: 500;
-    padding: 6px 12px; /* Tighter padding for a smaller button */
+    padding: 6px 12px; 
     border-radius: 4px;
     transition: background-color 0.2s ease;
 }
@@ -280,331 +401,218 @@ h1, h2, h3, h4, blockquote {
     background-color: #005582;
 }
 
-/* Targets the SVG icon inside the button to make it match the smaller text */
 .linkedin-btn svg {
     width: 14px;
     height: 14px;
 }
 
 .footer-right {
-    text-align: center; /* Changed from right to center */
-    max-width: 250px; /* Keeps the text wrapping neatly */
-    font-weight: 900;
+    text-align: center; 
+    max-width: 250px; 
 }
 
 .footer-right p {
     margin: 20px 0;
     line-height: 1.5;
     font-size: 12px;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-weight: 900;
-    color: #cccccc; /* Slightly dimmed the copyright text for better visual hierarchy */
+    color: #cccccc; 
 }
 
-/* Mobile Responsiveness: Stacks everything into 1 column on small screens */
-@media (max-width: 768px) {
-    .footer {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .footer-left {
-        grid-template-columns: 1fr; /* Changes grid to a single vertical column on mobile */
-    }
-    
-    .footer-right {
-        text-align: right;
-        margin-top: 20px;
-    }
-}
-
-/* --- ANIMATIONS & INTERACTIONS --- */
-
-/* 1. Seamless transitions switching between sections */
-html {
-    scroll-behavior: smooth;
-}
-
-/* 2. Slide-in animation baseline */
+/* --- ANIMATIONS & COMPONENTS --- */
 .slide-in {
     opacity: 0;
     transform: translateY(40px) scale(0.98);
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Added by JS when the element scrolls into view */
 .slide-in.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* 3. Clickable Deliverable Cards */
-.deliverable-card {
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-}
+/* --- RESPONSIVE MEDIA QUERIES --- */
 
-/* Smooth fade for the dynamic image area */
-.deliverable-display {
-    transition: opacity 0.4s ease;
-}
-
-.deliverable-display.fade-out {
-    opacity: 0;
-}
-
-/* Reusable Button Style */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    background-color: #241F20;
-    color: #ffffff;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 0.85rem;
-    border: 1px solid #241F20;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.btn:hover {
-    background-color: #C00031;
-    border-color: #C00031;
-    color: #ffffff;
-}
-
-/* --- HERO SECTION --- */
-.hero {
-    width: 100%;
-    /* 100vh means 100% of the viewport height. 
-       We subtract 80px to account for the approximate height of your sticky navbar 
-       so it fits perfectly on screen without scrolling. */
-    height: calc(100vh - 80px); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    background-color: #fafafa; /* Matches the slight off-white of the demo */
-    overflow: hidden; /* Prevents horizontal scrolling if text gets too wide */
-
-    background: radial-gradient(
-        circle at center,
-        #ffffff 0%,
-        #f5f5f5 50%,
-        #ececec 100%
-    );
-}
-
-.hero-title {
-    font-family: 'Rajdhani', 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 18vw;
-    line-height: 0.8;
-    letter-spacing: -0.03em;
-transform: scaleY(2.2);
-    text-transform: uppercase;
-
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-
-    transform: scaleY(2);
-
-    /* Gradient shading */
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #f2f2f2 40%,
-        #e6e6e6 75%,
-        #dcdcdc 100%
-    );
-
-    /* Ensure compatibility: define the standard property plus the webkit-prefixed one */
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    /* 3D depth */
-    text-shadow:
-        0px 2px 0px #d5c8cc,
-        0px 4px 0px #c5b9bd,
-        0px 6px 12px rgba(0,0,0,0.15);
-
-    opacity: 0.9;
-}
-
-/* --- FUTURISTIC GLOW EFFECTS --- */
-
-/* Deliverable Cards Hover Glow */
-.deliverable-card:hover {
-    transform: translateY(-5px);
-    border-color: #C00031;
-    /* Creates a layered neon glow effect */
-    box-shadow: 0 0 15px rgba(192, 0, 49, 0.3), 
-                0 0 30px rgba(192, 0, 49, 0.1); 
-    z-index: 10; /* Ensures the glow overlaps adjacent cards */
-    position: relative;
-}
-
-/* Deliverable Cards Active Glow */
-.deliverable-card.active {
-    border-color: #C00031;
-    background-color: #fcfcfc;
-    transform: translateY(-8px);
-    /* A slightly stronger glow for the selected state */
-    box-shadow: 0 0 20px rgba(192, 0, 49, 0.5),
-                0 0 40px rgba(192, 0, 49, 0.2);
-}
-/* Ensure the images themselves transition smoothly */
-.placeholder img {
-    transition: box-shadow 0.4s ease, transform 0.4s ease;
-    border-radius: 4px; /* Slight rounding looks more modern */
-}
-
-/* Apply the glow and a slight zoom when hovering over the container */
-.placeholder:hover img {
-    transform: scale(1.01); /* Slight pop-out effect */
-    box-shadow: 0 0 25px rgba(192, 0, 49, 0.4),
-                0 0 50px rgba(192, 0, 49, 0.15);
-}
-
-.streamlit-container {
-    width: 100%;
-    max-width: 100%; /* Overrides any previous constraints */
-    margin: 0 auto;
-    padding: 0;
-}
-
-.section-deliverable .deliverable-display {
-    max-width: 100%;
-    height: auto;
-}
-
-.section-exploratory .exploratory-display {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Sets the February / May text on opposite ends */
-.timeline-bounds {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 0.9rem;
-}
-
-/* Ensure timeline steps have enough space at the top for the centered badge */
-.timeline-step {
-    position: relative; 
-    margin-top: 25px; /* Adds space so the badge doesn't hit the element above it */
-    /* Your existing .timeline-step styles go here */
-}
-
-/* Optional: Gives the active step a subtle highlight */
-.timeline-step.active {
-    border-left: 4px solid #2e7d32; /* Example dark green */
-    background-color: #f9fdf9; /* Very light green background */
-}
-
-/* The visual styling for the 'Currently Here' badge, now perfectly centered */
-.current-tab {
-    position: absolute;
-    top: -15px; /* Hovers just above the top edge of the step */
-    left: 50%; /* Moves the start of the badge to the exact middle */
-    transform: translateX(-50%); /* Shifts the badge back by half its own width to center it */
-    background-color: #2e7d32; /* Example dark green */
-    color: #ffffff;
-    padding: 4px 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    letter-spacing: 0.5px;
-    white-space: nowrap; /* Ensures the words "Currently Here" stay on one line */
-}
-
-/* --- SWIPEABLE CAROUSEL --- */
-
-.carousel-wrapper {
-    position: relative;
-    width: 100%;
-    height: 500px; /* Matches your image-placeholder height */
-    overflow: hidden; 
-    border-radius: 8px;
-    touch-action: pan-y; /* Allows normal vertical scrolling on phones */
-    /* Subtle shadow to match your modern look */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-}
-
-.carousel-ribbon {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    /* Using the exact cubic-bezier timing from your slide-in animation */
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-    cursor: grab;
-}
-
-.carousel-ribbon:active {
-    cursor: grabbing;
-}
-
-.carousel-item {
-    min-width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none; /* Stops the browser from trying to "drag" the image file */
-}
-
-/* Directional Buttons */
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(36, 31, 32, 0.5);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    padding: 12px 18px;
-    font-size: 24px;
-    z-index: 10;
-    border-radius: 4px;
+/* Tablets */
+@media (max-width: 1024px) {
+    .grid-container-2 {
+        grid-template-columns: 1fr;
+    }
     
-    /* NEW: Hide the buttons by default */
-    opacity: 0; 
-    /* NEW: Added opacity to the transition for a smooth fade */
-    transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+    .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 20px;
+    }
+    
+    .footer-left {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* NEW: Fade the buttons in when hovering ANYWHERE over the carousel */
-.carousel-wrapper:hover .carousel-control {
+/* Mobile */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    .nav-links {
+        display: none; /* Consider adding a hamburger menu via JS later */
+    }
+    
+    .timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-left {
+        grid-template-columns: 1fr; 
+        text-align: center;
+    }
+    
+    .footer-right {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+/* --- NEW DELIVERABLES HOVER OVERLAY --- */
+.dashboard-link {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.hover-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(36, 31, 32, 0.8); /* Primary color with opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.hover-overlay span {
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.dashboard-link:hover .hover-overlay {
     opacity: 1;
 }
 
-.carousel-control:hover {
-    background-color: #C00031; 
-    transform: translateY(-50%) scale(1.05); 
+/* --- WEEKLY TRACKER --- */
+.weekly-tracker {
+    margin-top: 100px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: left;
 }
 
-.ctrl-left { left: 15px; }
-.ctrl-right { right: 15px; }
+.tracker-title {
+    font-family: 'Playfair Display', serif;;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
 
+.week-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.week-tab {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.week-tab:hover {
+    background: #f0f0f0;
+    color: var(--primary-color);
+}
+
+.week-tab.active {
+    background: #2e7d32;
+    color: #fff;
+    border-color: #2e7d32;
+    box-shadow: 0 4px 10px rgba(192, 0, 49, 0.3);
+}
+
+.week-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.week-content.active {
+    display: block;
+}
+
+.week-content h4 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.week-content ul {
+    list-style-position: inside;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.week-content p {
+    color: #555;
+    background: #fff;
+    padding: 15px;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- DATA ARCHITECTURE --- */
+.architecture-container {
+    max-width: 1000px; /* Keeps the iframe from stretching too wide on massive screens */
+    margin: 0 auto;
+    width: 100%;
+}
